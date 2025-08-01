@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAL College - Lost & Found System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src= "https://www.sal.edu.in/storage/site-data/logo-1.png" alt="SAL College Logo" width = 100 height = 100>
+                <h1>Lost & Found System</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="active">Home</a>
+                <a href="report-lost.html">Report Lost</a>
+                <a href="report-found.html">Report Found</a>
+                <a href="search.html">Search Items</a>
+               
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <h2>Welcome to SAL College Lost & Found</h2>
+            <p>Helping students recover lost items</p>
+        </section>
+
+        <section class="items-section">
+            <div class="items-grid" id="lostItems">
+                <h3>Lost Items</h3>
+                <!-- Lost items will be loaded here by JavaScript -->
+                <div class="no-items">No lost items reported yet.</div>
+            </div>
+            
+            <div class="items-grid" id="foundItems">
+                <h3>Found Items</h3>
+                <!-- Found items will be loaded here by JavaScript -->
+                <div class="no-items">No found items reported yet.</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Fuckerz. All rights reserved.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
