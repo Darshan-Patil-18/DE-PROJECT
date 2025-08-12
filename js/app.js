@@ -194,45 +194,45 @@ function setupSearch() {
     }
 
     function displaySearchResults(lost, found) {
-        if (lost.length === 0 && found.length === 0) {
-            resultsContainer.innerHTML = '<p>No items found matching your search.</p>';
-            return;
-        }
-
-        let html = '';
-
-        if (lost.length > 0) {
-            html += '<h2>Lost Items</h2>';
-            lost.forEach(item => {
-                html += `
-                    <div class="result-card">
-                        <h3>${item.itemName}</h3>
-                        <p><strong>Lost on:</strong> ${item.lostDate}</p>
-                        <p><strong>Location:</strong> ${item.location || 'Unknown'}</p>
-                        ${item.description ? `<p><strong>Description:</strong> ${item.description}</p>` : ''}
-                    </div>
-                `;
-            });
-        }
-
-        if (found.length > 0) {
-            html += '<h2>Found Items</h2>';
-            found.forEach(item => {
-                html += `
-                    <div class="result-card">
-                        <h3>${item.itemName}</h3>
-                        <p><strong>Found on:</strong> ${item.foundDate}</p>
-                        <p><strong>Location:</strong> ${item.foundLocation}</p>
-                        <p><strong>Contact:</strong> ${item.finderContact}</p>
-                        ${item.description ? `<p><strong>Description:</strong> ${item.description}</p>` : ''}
-                        ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.itemName}">` : ''}
-                    </div>
-                `;
-            });
-        }
-
-        resultsContainer.innerHTML = html;
+    if (lost.length === 0 && found.length === 0) {
+        resultsContainer.innerHTML = '<p>No items found matching your search.</p>';
+        return;
     }
+
+    let html = '';
+
+    if (lost.length > 0) {
+        html += '<h2>Lost Items</h2>';
+        lost.forEach(item => {
+            html += `
+                <div class="result-card">
+                    <h3>${item.itemName}</h3>
+                    <p><strong>Lost on:</strong> ${item.lostDate}</p>
+                    <p><strong>Location:</strong> ${item.location || 'Unknown'}</p>
+                    ${item.description ? `<p><strong>Description:</strong> ${item.description}</p>` : ''}
+                </div>
+            `;
+        });
+    }
+
+    if (found.length > 0) {
+        html += '<h2>Found Items</h2>';
+        found.forEach(item => {
+            html += `
+                <div class="result-card">
+                    <h3>${item.itemName}</h3>
+                    <p><strong>Found on:</strong> ${item.foundDate}</p>
+                    <p><strong>Location:</strong> ${item.foundLocation}</p>
+                    <p><strong>Contact:</strong> ${item.finderContact}</p>
+                    ${item.description ? `<p><strong>Description:</strong> ${item.description}</p>` : ''}
+                    ${item.imageBase64 ? `<img src="${item.imageBase64}" alt="${item.itemName}" style="max-width: 100%; height: auto;">` : ''}
+                </div>
+            `;
+        });
+    }
+
+    resultsContainer.innerHTML = html;
+}
 
     searchBtn.addEventListener('click', performSearch);
     searchInput.addEventListener('keyup', function(e) {
