@@ -120,30 +120,49 @@ function setupFoundForm() {
         e.preventDefault();
         
         const imageFile = document.getElementById('itemImage').files[0];
-        let imageUrl = '';
+        let imageBase64 = '';
         
         if (imageFile) {
-            imageUrl = URL.createObjectURL(imageFile);
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imageBase64 = e.target.result;
+                
+                const newItem = {
+                    id: Date.now(),
+                    itemName: document.getElementById('foundItemName').value,
+                    foundDate: document.getElementById('foundDate').value,
+                    foundLocation: document.getElementById('foundLocation').value,
+                    finderContact: document.getElementById('finderContact').value,
+                    description: document.getElementById('foundDescription').value,
+                    imageBase64: imageBase64,
+                    status: 'found',
+                    dateReported: new Date().toLocaleDateString()
+                };
+                
+                saveFoundItem(newItem);
+                alert('Found item reported successfully!');
+                window.location.href = 'index.html';
+            };
+            reader.readAsDataURL(imageFile);
+        } else {
+            const newItem = {
+                id: Date.now(),
+                itemName: document.getElementById('foundItemName').value,
+                foundDate: document.getElementById('foundDate').value,
+                foundLocation: document.getElementById('foundLocation').value,
+                finderContact: document.getElementById('finderContact').value,
+                description: document.getElementById('foundDescription').value,
+                imageBase64: '',
+                status: 'found',
+                dateReported: new Date().toLocaleDateString()
+            };
+            
+            saveFoundItem(newItem);
+            alert('Found item reported successfully!');
+            window.location.href = 'index.html';
         }
-        
-        const newItem = {
-            id: Date.now(),
-            itemName: document.getElementById('foundItemName').value,
-            foundDate: document.getElementById('foundDate').value,
-            foundLocation: document.getElementById('foundLocation').value,
-            finderContact: document.getElementById('finderContact').value,
-            description: document.getElementById('foundDescription').value,
-            imageUrl: imageUrl,
-            status: 'found',
-            dateReported: new Date().toLocaleDateString()
-        };
-        
-        saveFoundItem(newItem);
-        alert('Found item reported successfully!');
-        window.location.href = 'index.html';
     });
 }
-
 // ===== Search Functionality =====
 function setupSearch() {
     const searchBtn = document.getElementById('searchBtn');
