@@ -79,7 +79,7 @@ function displayFoundItems() {
                 <p><strong>Location:</strong> ${item.foundLocation}</p>
                 <p><strong>Contact:</strong> ${item.finderContact}</p>
                 ${item.description ? `<p><strong>Description:</strong> ${item.description}</p>` : ''}
-                ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.itemName}">` : ''}
+                ${item.imageBase64 ? `<img src="${item.imageBase64}" alt="${item.itemName}" style="max-width: 100%; height: auto;">` : ''}
                 <button class="btn-action" onclick="markAsReturned(${item.id})">Mark as Returned</button>
             </div>
         `;
@@ -87,7 +87,6 @@ function displayFoundItems() {
     
     container.innerHTML = html;
 }
-
 // ===== Form Handlers =====
 function setupLostForm() {
     const form = document.getElementById('lostForm');
